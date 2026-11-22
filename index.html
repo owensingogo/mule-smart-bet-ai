@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07130e"><link rel="manifest" href="manifest.json">
+<title>Mule Smart Bet AI</title><link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="authView" class="auth-wrap">
+ <div class="brand"><span class="brand-mark">M</span><div><b>MULE SMART BET AI</b><small>Smart analysis. Better decisions.</small></div></div>
+ <section class="auth-card"><h1>Welcome</h1><p>Sign in or create your account to save prediction tickets.</p>
+  <label>Email<input id="email" type="email" placeholder="you@example.com" autocomplete="email"></label>
+  <label>Password<input id="password" type="password" placeholder="At least 6 characters" autocomplete="current-password"></label>
+  <div class="auth-actions"><button id="loginBtn" class="primary">Sign in</button><button id="signupBtn" class="secondary">Create account</button></div>
+  <p id="authMessage" class="message"></p>
+ </section>
+</div>
+<div id="appView" class="app hidden">
+ <aside class="sidebar"><div class="brand"><span class="brand-mark">M</span><div><b>MULE SMART BET AI</b><small>Prediction workspace</small></div></div>
+ <nav><button class="nav active" data-page="dashboard">⌂ Dashboard</button><button class="nav" data-page="fixtures">⚽ Fixtures</button><button class="nav" data-page="builder">✦ Ticket Builder</button><button class="nav" data-page="history">▤ History</button><button class="nav" data-page="settings">⚙ Settings</button></nav>
+ <div class="side-bottom"><span id="userLabel"></span><button id="logoutBtn" class="secondary">Sign out</button></div></aside>
+ <main><header><div><p class="eyebrow">FOOTBALL ANALYTICS</p><h1 id="pageTitle">Dashboard</h1></div><div class="header-pill"><span class="dot"></span> Data connection</div></header>
+ <section id="dashboardPage" class="page">
+  <div class="hero"><div><p class="eyebrow">SMART PREDICTION ASSISTANT</p><h2>Find your next ticket.<br><em>Analyse before selecting.</em></h2><p class="muted">Build selections using available match data. No prediction is guaranteed.</p></div><div class="hero-ball">⚽</div></div>
+  <div class="stats-grid"><div class="stat"><small>Target odds</small><strong>15.00</strong><span>Daily Roller</span></div><div class="stat"><small>Maximum target</small><strong>100</strong><span>Custom tickets</span></div><div class="stat"><small>Saved tickets</small><strong id="savedCount">0</strong><span>Your history</span></div><div class="stat"><small>Model</small><strong>v1</strong><span>Statistical baseline</span></div></div>
+  <div class="panel command-panel"><div class="panel-heading"><div><h3>AI Command Centre</h3><p>Tell the ticket builder what you want.</p></div><span class="tag">COMMANDS</span></div><div class="command-row"><input id="commandInput" placeholder="e.g. Generate 5 odds from today's fixtures"><button id="commandBtn" class="primary">Generate</button></div><div class="quick"><button data-command="Daily Roller 15 odds">Daily Roller · 15 odds</button><button data-command="Generate 3 odds">3 odds</button><button data-command="Generate 5 odds">5 odds</button><button data-command="Generate 10 odds">10 odds</button><button data-command="Generate safest picks">Safest picks</button></div></div>
+  <div class="two-col"><div class="panel"><div class="panel-heading"><h3>Today's fixtures</h3><button id="refreshBtn" class="text-button">Refresh</button></div><div id="todayFixtures" class="fixture-list"><div class="empty">Connect the API backend and refresh to load fixtures.</div></div></div><div class="panel daily"><div class="panel-heading"><h3>Daily Roller</h3><span class="tag green">15.00 target</span></div><p>Generate a ticket with the target combined odds while prioritising selections supported by available statistics.</p><button id="dailyBtn" class="primary full">Generate Daily Roller</button><small>15 odds is a high-risk combined ticket. The probability of winning is not 95% or 98%.</small></div></div>
+ </section>
+ <section id="fixturesPage" class="page hidden"><div class="panel"><div class="panel-heading"><h3>Fixtures & match data</h3><div class="actions"><input id="dateInput" type="date"><button id="fixturesLoad" class="primary">Load fixtures</button></div></div><div id="fixtureResults" class="fixture-list"><div class="empty">Select a date and load fixtures.</div></div></div></section>
+ <section id="builderPage" class="page hidden"><div class="panel"><h3>Ticket Builder</h3><div class="builder-controls"><label>Target odds<input id="targetOdds" type="number" min="1.01" max="100" step="0.01" value="15"></label><label>Selection approach<select id="approach"><option value="balanced">Balanced analysis</option><option value="conservative">Lower-risk markets</option><option value="goals">Goals markets</option><option value="double">Double chance</option></select></label><label>Bookmaker<select id="bookmaker"><option>SportyBet</option><option>BetPawa</option><option>Other</option></select></label><button id="buildBtn" class="primary">Build ticket</button></div><div id="ticketOutput"></div></div></section>
+ <section id="historyPage" class="page hidden"><div class="panel"><div class="panel-heading"><h3>Saved tickets</h3><button id="historyRefresh" class="text-button">Refresh</button></div><div id="historyList" class="fixture-list"><div class="empty">No saved tickets yet.</div></div></div></section>
+ <section id="settingsPage" class="page hidden"><div class="panel"><h3>Settings & connection</h3><p>Football API calls are made through your own backend, which keeps the API key out of the browser.</p><label>Backend URL<input id="backendUrl" placeholder="https://your-backend.example.com"></label><button id="saveBackend" class="primary">Save backend URL</button><p id="settingsMessage" class="message"></p><div class="notice"><b>API status:</b> Configure and deploy the backend from the included <code>backend/</code> folder. See README.</div><h3>Responsible use</h3><p class="muted">Predictions are estimates, not guarantees. Combined odds increase risk. Do not bet money you cannot afford to lose.</div></section>
+ <div id="toast" class="toast"></div>
+ </main>
+</div>
+<script type="module" src="js/app.js"></script>
+</body></html>
