@@ -1,0 +1,2 @@
+export async function fetchFixtures(date,backendURL){if(!backendURL)throw new Error("Backend URL is not set. Deploy backend/ and enter its URL in Settings.");const r=await fetch(`${backendURL}/api/fixtures?date=${encodeURIComponent(date)}`);if(!r.ok)throw new Error(`Backend returned ${r.status}. Verify server URL and API configuration.`);const data=await r.json();return data.fixtures||[]}
+export async function fetchLeagues(backendURL){const r=await fetch(`${backendURL}/api/leagues`);if(!r.ok)throw new Error("League endpoint unavailable");return r.json()}
